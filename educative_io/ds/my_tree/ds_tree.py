@@ -1,3 +1,6 @@
+import numbers
+import math
+
 class BinaryTreeNode:
     def __init__(self, value):
         self.value = value
@@ -45,3 +48,31 @@ class BinaryTree:
         traversal += self.post_order_traversal(node.rightNode)
         traversal += str(node.value) + "-"
         return traversal
+
+    def size(self, node):
+
+        if node is None:
+            return 0
+        return self.size(node.leftNode) + self.size(node.rightNode) + 1
+
+    def size_iterative(self):
+        node_stack = []
+        node = self.root
+        node_stack.append(node)
+        cnt = 0
+
+        while len(node_stack):
+            node = node_stack.pop()
+            cnt += 1
+
+            if(node.rightNode):
+                node_stack.append(node.rightNode)
+            
+            if node.leftNode:
+                node_stack.append(node.leftNode)
+        return cnt
+
+
+    def height(self):
+        node_count = self.node_count()
+        return math.log((node_count + 1), 2)
