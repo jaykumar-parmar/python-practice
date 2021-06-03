@@ -1,10 +1,13 @@
-import re
-from tkinter import W
-
 
 def find_closest(array, num):
 
-    while len(array) >= 0:
+    if len(array) == 0:
+        return None
+    
+    if len(array) == 1:
+        return array[0]
+
+    while len(array) >= 2:
         mid = int(len(array) / 2)
 
         if(array[mid] == num):
@@ -15,7 +18,7 @@ def find_closest(array, num):
             else:
                 array = array[mid+1:]
 
-        return array[0]
+    return array[0]
 
 a = [1, 2, 4, 5, 6, 6, 8, 9]
 print(find_closest(a, 11))
